@@ -1,6 +1,6 @@
 require "../lib/bike"
 describe Bike do
-    it "working?" do
-    #   expect(working_bike(true)).to eq 'Release bike'
-    end
+  it "working?" do
+    expect(subject.working?).to be true
+  end
 end

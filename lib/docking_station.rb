@@ -1,6 +1,11 @@
+require_relative './bike.rb'
+
 class DockingStation 
+
+  #def initialise
+  #end
+
   def release_bike
-    working_bike = true
-    print "Release bike"
+    bike = Bike.new
   end
 end

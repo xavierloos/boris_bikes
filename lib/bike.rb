@@ -1,6 +1,5 @@
 class Bike 
   def working?
-    #working_bike = true
-    #print "Release bike"
+    true
   end
 end
