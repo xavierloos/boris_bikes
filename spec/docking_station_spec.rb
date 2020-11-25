@@ -1,4 +1,4 @@
-require "spec_helper"
+require "../lib/docking_station"
 
 describe DockingStation do
 end
