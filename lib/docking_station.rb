@@ -8,13 +8,13 @@ class DockingStation
   end
 
   def release_bike
-    fail "No bikes available" if @bikes == []
-    @bikes
+    fail "No bikes available" if @bikes.empty?
+    @bikes.pop
   end
 
   def dock_bike(bike)
     # Use fail or raise to raise an error
-    fail "Station Full" if @bikes.size > 20
+    fail "Station Full" if @bikes.size >= 20
     @bikes << bike
   end
 end

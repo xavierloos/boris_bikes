@@ -23,7 +23,7 @@ describe DockingStation do
     it "docks a bike" do
       a_bike = Bike.new
       subject.dock_bike(a_bike)
-      expect(subject.bikes).to eql(a_bike)
+      expect(subject.bikes).to include(a_bike)
     end
     # Write RSpec tests that expect errors
     it "returns an error when called on a docking station with >20 bikes" do
