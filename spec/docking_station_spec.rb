@@ -21,5 +21,13 @@ describe DockingStation do
       subject.dock_bike(a_bike)
       expect(subject.bike).to eql(a_bike)
     end
+    # Write RSpec tests that expect errors
+    it "returns an error when call a full docking station" do
+      full_docking = DockingStation.new
+      full_docking.dock_bike(Bike.new)
+      expect{full_docking.dock_bike(Bike.new)}.to raise_error("Station Full")
+    end
   end
+
+
 end

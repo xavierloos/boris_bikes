@@ -9,6 +9,8 @@ class DockingStation
   end
 
   def dock_bike(bike)
+    # Use fail or raise to raise an error
+    fail "Station Full" if @bike != nil
     @bike = bike
   end
 end
