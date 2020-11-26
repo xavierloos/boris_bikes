@@ -28,7 +28,7 @@ describe DockingStation do
     # Write RSpec tests that expect errors
     it "returns an error when called on a docking station with >20 bikes" do
       full_docking = DockingStation.new
-      20.times{full_docking.dock_bike(Bike.new)}
+      DockingStation::DEFAULT_CAPACITY.times{full_docking.dock_bike(Bike.new)}
       expect{full_docking.dock_bike(Bike.new)}.to raise_error("Station Full")
     end
   end
