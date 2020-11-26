@@ -32,6 +32,4 @@ describe DockingStation do
       expect{full_docking.dock_bike(Bike.new)}.to raise_error("Station Full")
     end
   end
-
-
 end
