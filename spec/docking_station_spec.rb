@@ -2,6 +2,10 @@ require "../lib/docking_station"
 
 describe DockingStation do
 
+  it "is empty when new" do
+    expect(subject.bikes).to eq([])
+  end
+
   describe "#release_bike" do
     it "releases a working bike when a bike is available" do
       original_bike = Bike.new
@@ -19,12 +23,12 @@ describe DockingStation do
     it "docks a bike" do
       a_bike = Bike.new
       subject.dock_bike(a_bike)
-      expect(subject.bike).to eql(a_bike)
+      expect(subject.bikes).to eql(a_bike)
     end
     # Write RSpec tests that expect errors
-    it "returns an error when call a full docking station" do
+    it "returns an error when called on a docking station with >20 bikes" do
       full_docking = DockingStation.new
-      full_docking.dock_bike(Bike.new)
+      20.times{full_docking.dock_bike(Bike.new)}
       expect{full_docking.dock_bike(Bike.new)}.to raise_error("Station Full")
     end
   end
