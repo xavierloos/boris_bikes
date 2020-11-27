@@ -20,7 +20,7 @@ User can use a good bike, I need to check the bike is working.
 ```
 ## Write down all the verbs in the User Stories
 ```
-User I can use a bike, I can release bike from the docking station.
+User can use a bike, I can release bike from the docking station.
 User can use a bike in good conditions, check first if it's working.
 ```
 
