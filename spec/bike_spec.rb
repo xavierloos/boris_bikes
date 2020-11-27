@@ -6,4 +6,10 @@ describe Bike do
       expect(subject.working?).to be true
     end
   end
+  describe "broken?" do
+    it "bike reported broken" do
+      subject.report_broken
+      expect(subject).to be_broken
+    end
+  end
 end
