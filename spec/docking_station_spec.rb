@@ -14,8 +14,8 @@ describe DockingStation do
   end
   describe "#release_bike" do
     it "releases a working bike when a bike is available" do
-      original_bike = Bike.new
-      station = DockingStation.new
+      original_bike =  double("bike") #Bike.new
+      station = double("station") #DockingStation.new
       station.dock_bike(original_bike)
       new_bike = station.release_bike
       expect(new_bike.working?).to be true
