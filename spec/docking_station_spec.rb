@@ -13,12 +13,22 @@ describe DockingStation do
     end
   end
   describe "#release_bike" do
+    let(:bike) { double :bike }
     it "releases a working bike when a bike is available" do
-      original_bike =  double("bike") #Bike.new
-      station = double("station") #DockingStation.new
+      original_bike =  bike #Bike.new
+      station = DockingStation.new
       station.dock_bike(original_bike)
       new_bike = station.release_bike
-      expect(new_bike.working?).to be true
+      allow(new_bike).to receive(:working?).and_return(true)
+      expect(new_bike).to be original_bike
+    end
+    it "will not release a broken bike" do
+      original_bike = double(:bike, broken?: true)
+      station = DockingStation.new
+      station.dock_bike(original_bike)
+      new_bike = station.release_bike
+      allow(new_bike).to receive(:broken?).and_return(true)
+      expect(new_bike).to be original_bike
     end
     it "returns an error when called on an empty docking station" do
       expect {DockingStation.new.release_bike}.to raise_error("No bikes available")
