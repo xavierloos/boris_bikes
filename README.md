@@ -92,7 +92,7 @@ In the irb the line number is 1
 
 ## Passing your first Unit Test
 
-In ./lib/DockingStation.rb
+In _./lib/DockingStation.rb_
 
 ```
 #I create the main class
@@ -100,7 +100,7 @@ class DockingStation
 end
 ```
 
-in ./spec/docking_station_spec.r
+in _./spec/docking_station_spec.rb_
 
 ```
 require "DockingStation" #I link the file rb and I dont need the full path only the name
@@ -125,3 +125,67 @@ Traceback (most recent call last):
         1: from (irb):3
 NoMethodError (undefined method `release_bike' for #<DockingStation:0x00007fe9f989c7c8>)
 ```
+
+## Back to the unit
+
+### Add a test to your spec file that expects DockingStation instances to respond_to the method release_bike
+
+```
+it "respond to the method release_bike" do
+    expect(subject).to respond_to :release_bike
+end
+```
+
+### Rewrite this test using RSpec's one-liner syntax
+
+```
+# it "respond to the method release_bike" do
+#   expect(subject).to respond_to :release_bike
+# end
+it{is_expected.to respond_to :release_bike} #One-liner syntax
+```
+
+### Run RSpec from the Command Line
+
+```
+rspec
+F
+
+Failures:
+
+  1) DockingStation is expected to respond to #release_bike
+     Failure/Error: it { is_expected.to respond_to :release_bike } #One line syntax
+       expected #<DockingStation:0x00007fa18593ebe8> to respond to :release_bike
+     # ./spec/docking_station_spec.rb:6:in `block (2 levels) in <top (required)>'
+
+Finished in 0.05318 seconds (files took 0.11656 seconds to load)
+1 example, 1 failure
+
+Failed examples:
+
+rspec ./spec/docking_station_spec.rb:6 # DockingStation is expected to respond to #release_bike
+```
+
+### Explain the error to your pair partner
+
+The **NameError** is not yet initialize in the main file rb, therefore the error marks that it cannot be found in the main class.
+
+### Add a method release_bike to the DockingStation class
+
+```
+def release_bike
+end
+```
+
+### Run RSpec from the Command Line
+
+```
+.
+
+Finished in 0.0076 seconds (files took 0.12337 seconds to load)
+1 example, 0 failures
+```
+
+### Explain to your pair partner the difference between what you see, and the error you saw before.
+
+Now that we add the method release_bike is indeed found in the class and it doesn't give an error.
