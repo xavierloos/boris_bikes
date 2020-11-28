@@ -1,11 +1,15 @@
 class Bike 
+  attr_accessor :broken_bikes
+  
+  def initialize
+    @broken_bikes = []
+  end
+
   def working?
-    true
-  end
-  def report_broken
-    @broken = true
-  end
-  def broken?
-    @broken
-  end
+    if true
+      @bikes << bike
+    else
+      @broken_bikes << bike
+    end
+
 end
