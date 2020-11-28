@@ -61,7 +61,7 @@ In the irb the line number is 1
  1: from (irb):1
 ```
 ### Use the Ruby Documentation to find out what the error means
-**NameError:*** Raised when a given name is invalid or undefined.
+**NameError:** Raised when a given name is invalid or undefined.
 
 ### Suggest one way of solving the error.
 - Create a class on the ruby.
