@@ -402,6 +402,20 @@ end
 
 - Feature-test the feature again.
 
+In irb:
+
+```
+irb                                                              ✔
+2.7.0 :001 > require "./lib/DockingStation"
+ => true
+2.7.0 :002 > station = DockingStation.new
+2.7.0 :003 > bike = station.release_bike
+2.7.0 :004 > bike.working?
+ => true
+```
+
+In rspec:
+
 ```
 rspec
 ...
