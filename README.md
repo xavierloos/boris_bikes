@@ -90,6 +90,26 @@ In the irb the line number is 1
 - Require the ruby file path in the irb.
 - Now, create a new instance of that class.
 
+## Passing your first Unit Test
+
+In ./lib/DockingStation.rb
+
+```
+#I create the main class
+class DockingStation
+end
+```
+
+in ./spec/docking_station_spec.r
+
+```
+require "DockingStation" #I link the file rb and I dont need the full path only the name
+#The describe check if I have the class DockingStation in the rb file
+describe DockingStation do
+end
+
+```
+
 ## Back to the feature
 
 ```
