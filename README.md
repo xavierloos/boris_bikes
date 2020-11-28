@@ -696,7 +696,7 @@ end
 ```
 
 ```
-def dock(bikes)
+def dock(bike)
     fail "Dock full" if @bikes.size >= 20
     @bikes << bike
 end
