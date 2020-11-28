@@ -747,3 +747,27 @@ end
 def empty?
 end
 ```
+
+## Removing 'magic numbers'
+
+- Define a constant, DEFAULT_CAPACITY, that stores the number 20. Do this within the DockingStation class.
+
+```
+class DockingStation
+  DEFAULT_CAPACITY = 20
+end
+```
+
+- Remove references to the magic number 20 in your implementation, using DEFAULT_CAPACITY instead.
+
+```
+def full?
+    @bikes.count >= DEFAULT_CAPACITY
+end
+```
+
+- Refactor your tests to use this new constant instead of the magic number 20.
+
+```
+DockingStation::DEFAULT_CAPACITY.times { subject.dock Bike.new }
+```
