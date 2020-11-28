@@ -771,3 +771,61 @@ end
 ```
 DockingStation::DEFAULT_CAPACITY.times { subject.dock Bike.new }
 ```
+
+## Initialization defaults
+
+- Write a feature test that allows a user to set a @capacity instance variable when DockingStation.new is called.
+
+```
+it "set a default capacity" do
+    expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
+end
+```
+
+- Create Unit tests for this
+
+```
+irb
+2.7.0 :001 > require "./lib/DockingStation"
+ => true
+2.7.0 :002 > station = DockingStation.new 50
+2.7.0 :003 > station
+ => #<DockingStation:0x00007f9020174988 @capacity=50, @bikes=[]>
+```
+
+- Implement the functionality in your code.
+
+```
+class DockingStation
+  def initialize(capacity)
+    @capacity = capacity
+  end
+end
+```
+
+- Write a feature test that ensures a default capacity of 20 is set when no parameters are passed to DockingStation.new
+
+```
+DEFAULT_CAPACITY = 20
+def initialize(capacity)
+end
+```
+
+- Create a unit test for this default capacity
+
+```
+describe "initialization" do
+    it "has a variable capacity" do
+      station = DockingStation.new(50)
+      50.times { station.dock Bike.new }
+      expect { station.dock Bike.new }.to raise_error "Dock full"
+    end
+  end
+```
+
+- Use a default argument value within the initialize method to make this test pass.
+
+```
+def initialize(capacity = DEFAULT_CAPACITY)
+end
+```
