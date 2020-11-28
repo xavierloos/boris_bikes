@@ -405,7 +405,7 @@ end
 In irb:
 
 ```
-irb                                                              ✔
+irb
 2.7.0 :001 > require "./lib/DockingStation"
  => true
 2.7.0 :002 > station = DockingStation.new
@@ -422,4 +422,85 @@ rspec
 
 Finished in 0.01733 seconds (files took 0.21152 seconds to load)
 3 examples, 0 failures
+```
+
+## Using Instance Variables
+
+```
+As a member of the public
+So I can return bikes I've hired
+I want to dock my bike at the docking station
+```
+
+- Write a feature test for docking a bike at a docking station
+
+```
+ it "expect a bike to be returned to the station" do
+    expect(subject).to respond_to(:station).with(1).argument
+  end
+```
+
+```
+rspec
+...F
+
+Failures:
+
+  1) DockingStation expect a bike to be returned to the station
+     Failure/Error: expect(subject).to respond_to(:station).with(1).argument
+       expected #<DockingStation:0x00007ffcf0146438> to respond to :station with 1 argument
+     # ./spec/docking_station_spec.rb:13:in `block (2 levels) in <top (required)>'
+
+Finished in 0.05626 seconds (files took 0.22515 seconds to load)
+4 examples, 1 failure
+
+Failed examples:
+
+rspec ./spec/docking_station_spec.rb:12 # DockingStation expect a bike to be returned to the station
+```
+
+- Write a unit test for the method you need to add to DockingStation to make docking possible
+
+In ./lib/DockingStation we add a method to our class
+
+```
+attr_reader :bike
+
+def station(bike)
+    @bike = bike
+end
+```
+
+- Pass both tests
+
+```
+rspec
+.....
+
+Finished in 0.01428 seconds (files took 0.12105 seconds to load)
+5 examples, 0 failures
+```
+
+- Use an instance variable with attr_reader to do a full test-implementation cycle for the second User Story
+
+```
+As a member of the public
+So I can decide whether to use the docking station
+I want to see a bike that has been docked
+```
+
+```
+it "see a bike that has been docked" do
+    bike = Bike.new
+    subject.station(bike)
+    expect(subject.bike).to eq(bike)
+end
+```
+
+```
+rspec
+.....
+
+Finished in 0.01428 seconds (files took 0.12105 seconds to load)
+5 examples, 0 failures
 ```
