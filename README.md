@@ -34,3 +34,15 @@ User can use a bike in good conditions, check first if it's working.
 
 ## Draw a diagram that shows how your Objects will use Messages to communicate with one another
 <img src="https://github.com/xavierloos/boris_bikes/blob/main/users_diagram.png">
+
+## From a Domain Model to a Feature Test
+We have an *NameError* because we don't have initialize the class DockingStation so the program doesn't reconize this.
+```
+2.7.0 :001 > docking_station = DockingStation.new
+Traceback (most recent call last):
+        4: from /Users/jlr/.rvm/rubies/ruby-2.7.0/bin/irb:23:in `<main>'
+        3: from /Users/jlr/.rvm/rubies/ruby-2.7.0/bin/irb:23:in `load'
+        2: from /Users/jlr/.rvm/rubies/ruby-2.7.0/lib/ruby/gems/2.7.0/gems/irb-1.2.1/exe/irb:11:in `<top (required)>'
+        1: from (irb):1
+NameError (uninitialized constant DockingStation)
+```
