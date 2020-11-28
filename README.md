@@ -504,3 +504,61 @@ rspec
 Finished in 0.01428 seconds (files took 0.12105 seconds to load)
 5 examples, 0 failures
 ```
+
+## Raising Exceptions
+
+- Feature test the feature you are building using irb
+
+```
+ irb
+2.7.0 :001 > require "./lib/DockingStation"
+ => true
+2.7.0 :002 > station = DockingStation.new
+2.7.0 :003 > station.release_bike
+ => #<Bike:0x00007f896192d190>
+2.7.0 :004 > station.release_bike
+ => #<Bike:0x00007f89619a18d8>
+```
+
+- Use {} and raise_error syntax in your RSpec unit test to test exception raising
+
+```
+describe "release_bike" do
+    it "raise an error if the dock doesn't have a bike" do
+      expect { subject.release_bike }.to raise_error "Empty dock"
+    end
+end
+```
+
+- Use the fail or raise keyword to raise an exception in your code (not your tests)
+
+```
+def release_bike
+    fail "Empty dock" unless @bike
+    @bike
+end
+```
+
+- Make the test pass by raising an exception
+
+```
+rspec
+.....
+
+Finished in 0.01369 seconds (files took 0.11915 seconds to load)
+5 examples, 0 failures
+```
+
+- Explain why you use curly braces in the RSpec error handling syntax to your partner
+
+We are chatching the errors and the program stops.
+
+- Feature-test the feature again.
+
+```
+rspec
+.....
+
+Finished in 0.01685 seconds (files took 0.19608 seconds to load)
+5 examples, 0 failures
+```
