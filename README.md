@@ -189,3 +189,118 @@ Finished in 0.0076 seconds (files took 0.12337 seconds to load)
 ### Explain to your pair partner the difference between what you see, and the error you saw before.
 
 Now that we add the method release_bike is indeed found in the class and it doesn't give an error.
+
+## Building a bike
+
+- Start irb
+
+```
+irb
+```
+
+- Instantiate a DockingStation as docking_station
+
+```
+2.7.0 :001 > require "./lib/DockingStation"
+ => true
+2.7.0 :002 > docking_station = DockingStation.new
+```
+
+- Ask docking_station to release a bike, and save the response to a variable bike
+
+```
+2.7.0 :003 > bike = docking_station.release_bike
+2.7.0 :004 > bike #Check what I have in my var
+ => nil
+```
+
+- Ask the bike if it is working?
+
+```
+2.7.0 :005 > bike.working?
+Traceback (most recent call last):
+        4: from /Users/jlr/.rvm/rubies/ruby-2.7.0/bin/irb:23:in `<main>'
+        3: from /Users/jlr/.rvm/rubies/ruby-2.7.0/bin/irb:23:in `load'
+        2: from /Users/jlr/.rvm/rubies/ruby-2.7.0/lib/ruby/gems/2.7.0/gems/irb-1.2.1/exe/irb:11:in `<top (required)>'
+        1: from (irb):5
+NoMethodError (undefined method `working?' for nil:NilClass)
+```
+
+- Explain the error to your pair partner
+  Our method _working?_ doesn't exist or is been written wrong.
+- Create a new spec file for a Bike class
+  In ./spec/bike_spec.rb
+- Set up the spec file to describe the Bike class
+
+```
+describe Bike do
+end
+```
+
+- Run RSpec from the Command Line
+
+```
+rspec
+
+An error occurred while loading ./spec/bike_spec.rb.
+Failure/Error:
+  describe Bike do
+  end
+
+NameError:
+  uninitialized constant Bike
+# ./spec/bike_spec.rb:1:in `<top (required)>'
+
+
+Finished in 0.00003 seconds (files took 0.19951 seconds to load)
+0 examples, 0 failures, 1 error occurred outside of examples
+```
+
+- Fix the error you see, similarly to how you fixed the same error for DockingStation
+  In ./spec/bike_spec.rb
+
+```
+require "Bike"
+```
+
+In ./lib/Bike.rb
+
+```
+class Bike
+end
+```
+
+- Add a test to your bike_spec.rb file that expects Bike instances to respond_to the method working?
+  In ./spec/bike_spec.rb
+
+```
+it { is_expected(subject).to respond_to :wokring? }
+```
+
+and from the command line I have this error
+
+```
+F.
+
+Failures:
+
+  1) Bike is expected to respond to #working?
+     Failure/Error: it { is_expected.to respond_to :working? }
+       expected #<Bike:0x00007fd0c418b108> to respond to :working?
+     # ./spec/bike_spec.rb:3:in `block (2 levels) in <top (required)>'
+
+Finished in 0.0332 seconds (files took 0.11949 seconds to load)
+2 examples, 1 failure
+
+Failed examples:
+
+rspec ./spec/bike_spec.rb:3 # Bike is expected to respond to #working?
+```
+
+- Make this test pass.
+  In ./lib/Bike.rb
+
+```
+ def working?
+  end
+```
