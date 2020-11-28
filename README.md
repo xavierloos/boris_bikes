@@ -378,4 +378,34 @@ rspec ./spec/docking_station_spec.rb:8 # DockingStation release a bike and expec
 
 - Make this test pass
 
+In ./lib/DockingStation.rb
+
+```
+#complements the builtin method require by allowing you to load a file that is relative to the file containing the require_relative statement.
+require _relative "Bike"
+
+class DockingStation
+  def release_bike
+    Bike.new #We ask for the class Bike in the Bike file
+  end
+end
+```
+
+In ./lib/Bike.rb
+
+```
+ def working?
+    true #It need to return true to use the bike
+  end
+end
+```
+
 - Feature-test the feature again.
+
+```
+rspec
+...
+
+Finished in 0.01733 seconds (files took 0.21152 seconds to load)
+3 examples, 0 failures
+```
