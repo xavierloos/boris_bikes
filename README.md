@@ -4,7 +4,7 @@ Transport for London, the body responsible for delivery of a new bike system, co
 
 ## From User Stories to a Domain Model
 
-### User Story
+- User Story
 
 ```
 As a user,
@@ -18,21 +18,21 @@ I can use a bike in excelent conditions,
 I need to check if the bike is working
 ```
 
-### Write down all the nouns in the User Story
+- Write down all the nouns in the User Story
 
 ```
 User can use a bike. I want to release a bike from the docking station.
 User can use a good bike, I need to check the bike is working.
 ```
 
-### Write down all the verbs in the User Stories
+- Write down all the verbs in the User Stories
 
 ```
 User can use a bike, I can release bike from the docking station.
 User can use a bike in good conditions, check first if it's working.
 ```
 
-### Organise the nouns and verbs into Objects and Messages
+- Organise the nouns and verbs into Objects and Messages
 
 | OBJECT         | MESSAGE      | RESPONSE   |
 | -------------- | ------------ | ---------- |
@@ -40,7 +40,7 @@ User can use a bike in good conditions, check first if it's working.
 | Bike           | is working?  | TRUE/FALSE |
 | DockingStation | Release_bike | BIKE       |
 
-### Draw a diagram that shows how your Objects will use Messages to communicate with one another
+- Draw a diagram that shows how your Objects will use Messages to communicate with one another
 
 <img src="https://github.com/xavierloos/boris_bikes/blob/main/users_diagram.png">
 
@@ -60,19 +60,19 @@ NameError (uninitialized constant DockingStation)
 
 ## Errors are good
 
-### Type of error
+- Type of error
 
 ```
 NameError
 ```
 
-### Write down the file path where the error happened
+- Write down the file path where the error happened
 
 ```
 4: from /Users/jlr/.rvm/rubies/ruby-2.7.0/bin/irb:23:in `<main>'
 ```
 
-### Write down the line number of the error
+- Write down the line number of the error
 
 In the irb the line number is 1
 
@@ -80,15 +80,15 @@ In the irb the line number is 1
  1: from (irb):1
 ```
 
-### Use the Ruby Documentation to find out what the error means
+- Use the Ruby Documentation to find out what the error means
 
 **NameError:** Raised when a given name is invalid or undefined.
 
-### Suggest one way of solving the error.
+- Suggest one way of solving the error.
 
-- Create a class on the ruby.
-- Require the ruby file path in the irb.
-- Now, create a new instance of that class.
+* Create a class on the ruby.
+* Require the ruby file path in the irb.
+* Now, create a new instance of that class.
 
 ## Passing your first Unit Test
 
@@ -128,7 +128,7 @@ NoMethodError (undefined method `release_bike' for #<DockingStation:0x00007fe9f9
 
 ## Back to the unit
 
-### Add a test to your spec file that expects DockingStation instances to respond_to the method release_bike
+- Add a test to your spec file that expects DockingStation instances to respond_to the method release_bike
 
 ```
 it "respond to the method release_bike" do
@@ -136,7 +136,7 @@ it "respond to the method release_bike" do
 end
 ```
 
-### Rewrite this test using RSpec's one-liner syntax
+- Rewrite this test using RSpec's one-liner syntax
 
 ```
 # it "respond to the method release_bike" do
@@ -145,7 +145,7 @@ end
 it{is_expected.to respond_to :release_bike} #One-liner syntax
 ```
 
-### Run RSpec from the Command Line
+- Run RSpec from the Command Line
 
 ```
 rspec
@@ -166,18 +166,18 @@ Failed examples:
 rspec ./spec/docking_station_spec.rb:6 # DockingStation is expected to respond to #release_bike
 ```
 
-### Explain the error to your pair partner
+- Explain the error to your pair partner
 
 The **NameError** is not yet initialize in the main file rb, therefore the error marks that it cannot be found in the main class.
 
-### Add a method release_bike to the DockingStation class
+- Add a method release_bike to the DockingStation class
 
 ```
 def release_bike
 end
 ```
 
-### Run RSpec from the Command Line
+- Run RSpec from the Command Line
 
 ```
 .
@@ -186,7 +186,7 @@ Finished in 0.0076 seconds (files took 0.12337 seconds to load)
 1 example, 0 failures
 ```
 
-### Explain to your pair partner the difference between what you see, and the error you saw before.
+- Explain to your pair partner the difference between what you see, and the error you saw before.
 
 Now that we add the method release_bike is indeed found in the class and it doesn't give an error.
 
@@ -228,8 +228,10 @@ NoMethodError (undefined method `working?' for nil:NilClass)
 
 - Explain the error to your pair partner
   Our method _working?_ doesn't exist or is been written wrong.
+
 - Create a new spec file for a Bike class
   In ./spec/bike_spec.rb
+
 - Set up the spec file to describe the Bike class
 
 ```
@@ -303,4 +305,14 @@ rspec ./spec/bike_spec.rb:3 # Bike is expected to respond to #working?
 ```
  def working?
   end
+```
+
+from the console
+
+```
+rspec
+..
+
+Finished in 0.01341 seconds (files took 0.23496 seconds to load)
+2 examples, 0 failures
 ```
