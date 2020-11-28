@@ -481,7 +481,10 @@ Finished in 0.01428 seconds (files took 0.12105 seconds to load)
 5 examples, 0 failures
 ```
 
+<details>
+<summary>
 - Use an instance variable with attr_reader to do a full test-implementation cycle for the second User Story
+</summary>
 
 ```
 As a member of the public
@@ -504,3 +507,5 @@ rspec
 Finished in 0.01428 seconds (files took 0.12105 seconds to load)
 5 examples, 0 failures
 ```
+
+</details>
