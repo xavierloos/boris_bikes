@@ -601,3 +601,103 @@ Traceback (most recent call last):
         1: from /Users/jlr/Desktop/boris_bikes/lib/DockingStation.rb:13:in `station'
 RuntimeError (Dock full)
 ```
+
+## Wrapping Collections
+
+- Write a manual feature test for the above feature. Consider using 20.times { docking_station.dock Bike.new }.
+
+```
+irb
+2.7.0 :001 > require "./lib/DockingStation"
+ => true
+2.7.0 :002 > station = DockingStation.new
+2.7.0 :003 > 20.times{station.dock Bike.new}
+Traceback (most recent call last):
+        7: from /Users/jlr/.rvm/rubies/ruby-2.7.0/bin/irb:23:in `<main>'
+        6: from /Users/jlr/.rvm/rubies/ruby-2.7.0/bin/irb:23:in `load'
+        5: from /Users/jlr/.rvm/rubies/ruby-2.7.0/lib/ruby/gems/2.7.0/gems/irb-1.2.1/exe/irb:11:in `<top (required)>'
+        4: from (irb):3
+        3: from (irb):3:in `times'
+        2: from (irb):3:in `block in irb_binding'
+        1: from /Users/jlr/Desktop/boris_bikes/lib/DockingStation.rb:13:in `dock'
+RuntimeError (Dock full)
+```
+
+- Rename your attribute @bike to a name better reflecting that it will store more than one Bike instance.
+
+```
+ @bikes #change @bike to @bikes
+```
+
+- Use rspec to identify areas of your code that need to be updated to use this new attribute name.
+
+```
+rspec
+...F..
+
+Failures:
+
+  1) DockingStation puts a bike to the station
+     Failure/Error: expect(subject.bike).to eq(bike)
+
+     NoMethodError:
+       undefined method `bike' for #<DockingStation:0x00007fbf2708d1d8>
+     # ./spec/docking_station_spec.rb:18:in `block (2 levels) in <top (required)>'
+
+Finished in 0.01716 seconds (files took 0.23916 seconds to load)
+6 examples, 1 failure
+
+Failed examples:
+
+rspec ./spec/docking_station_spec.rb:15 # DockingStation puts a bike to the station
+```
+
+- Update your existing tests to recognise this new name for the attribute.
+
+```
+it "puts a bike to the station" do
+    bikes = Bike.new
+    subject.dock(bikes)
+    expect(subject.bikes).to eq(bikes)
+  end
+```
+
+- Use an initialize function to set the initial value of this attribute to a simple collection object: an empty array.
+
+```
+def initialize
+    @bikes = []
+end
+```
+
+- Update your release_bike and dock methods to work with this new array (i.e. make your tests pass).
+
+```
+ def release_bike
+    fail "Dock empty" unless @bikes
+    @bikes.pop
+  end
+```
+
+```
+  def dock(bike)
+    fail "Dock full" if @bikes
+    @bikes << bike
+  end
+```
+
+- Update your release_bike and dock guard conditions to account for the new capacity of 20 bikes.
+
+```
+def release_bike
+    fail "Dock empty" if @bikes.empty?
+    @bikes.pop
+end
+```
+
+```
+def dock(bikes)
+    fail "Dock full" if @bikes.size >= 20
+    @bikes << bike
+end
+```
