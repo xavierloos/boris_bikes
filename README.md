@@ -701,3 +701,49 @@ def dock(bike)
     @bikes << bike
 end
 ```
+
+## The Single Responsibility Principle
+
+- Define a full? predicate method that uses some of the dock code to return true or false depending on whether the station is full or not
+
+```
+def full?
+    @bikes.count >=20
+end
+```
+
+- Rewrite the guard condition of your dock method to incorporate your new full? method
+
+```
+def dock(bike)
+    fail "Dock full" if full?
+    @bikes << bike
+end
+```
+
+- Do the same for release_bike, using an empty? method
+
+```
+def release_bike
+    fail "Dock empty" if empty?
+    @bikes.pop
+end
+```
+
+```
+def empty?
+    @bikes.empty?
+end
+```
+
+- Use the private keyword to ensure these methods cannot be called from 'outside' instances of the DockingStation class.
+
+```
+private
+
+def full?
+end
+
+def empty?
+end
+```
