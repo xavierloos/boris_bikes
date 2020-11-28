@@ -46,3 +46,24 @@ Traceback (most recent call last):
         1: from (irb):1
 NameError (uninitialized constant DockingStation)
 ```
+## Errors are good
+### Type of error
+```
+NameError
+```
+### Write down the file path where the error happened
+```
+4: from /Users/jlr/.rvm/rubies/ruby-2.7.0/bin/irb:23:in `<main>'
+```
+### Write down the line number of the error
+In the irb the line number is 1
+```
+ 1: from (irb):1
+```
+### Use the Ruby Documentation to find out what the error means
+**NameError:*** Raised when a given name is invalid or undefined.
+
+### Suggest one way of solving the error.
+- Create a class on the ruby.
+- Require the ruby file path in the irb.
+- Now, create a new instance of that class.
