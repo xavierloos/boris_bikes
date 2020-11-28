@@ -227,10 +227,12 @@ NoMethodError (undefined method `working?' for nil:NilClass)
 ```
 
 - Explain the error to your pair partner
-  Our method _working?_ doesn't exist or is been written wrong.
+
+Our method _working?_ doesn't exist or is been written wrong.
 
 - Create a new spec file for a Bike class
-  In ./spec/bike_spec.rb
+
+In ./spec/bike_spec.rb
 
 - Set up the spec file to describe the Bike class
 
@@ -259,7 +261,8 @@ Finished in 0.00003 seconds (files took 0.19951 seconds to load)
 ```
 
 - Fix the error you see, similarly to how you fixed the same error for DockingStation
-  In ./spec/bike_spec.rb
+
+In ./spec/bike_spec.rb
 
 ```
 require "Bike"
@@ -273,7 +276,8 @@ end
 ```
 
 - Add a test to your bike_spec.rb file that expects Bike instances to respond_to the method working?
-  In ./spec/bike_spec.rb
+
+In ./spec/bike_spec.rb
 
 ```
 it { is_expected(subject).to respond_to :wokring? }
@@ -300,7 +304,8 @@ rspec ./spec/bike_spec.rb:3 # Bike is expected to respond to #working?
 ```
 
 - Make this test pass.
-  In ./lib/Bike.rb
+
+In ./lib/Bike.rb
 
 ```
  def working?
