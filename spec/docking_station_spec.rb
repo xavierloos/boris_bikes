@@ -22,4 +22,10 @@ describe DockingStation do
       expect { subject.release_bike }.to raise_error "Dock empty"
     end
   end
+  describe "station" do
+    it "raise an error if the dock is full and user want to dock a bike" do
+      subject.station(Bike.new)
+      expect { subject.station Bike.new }.to raise_error "Dock full"
+    end
+  end
 end

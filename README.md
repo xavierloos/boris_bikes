@@ -562,3 +562,42 @@ rspec
 Finished in 0.01685 seconds (files took 0.19608 seconds to load)
 5 examples, 0 failures
 ```
+
+## Limiting capacity
+
+In ./spec/docking_station.rb
+
+```
+describe "station" do
+    it "raise an error if the dock is full and user want to dock a bike" do
+      subject.station(Bike.new)
+      expect { subject.station Bike.new }.to raise_error "Dock full"
+    end
+end
+```
+
+In ./lib/DockingStation.rb
+
+```
+def release_bike
+    fail "Dock empty" unless @bike
+    @bike
+end
+```
+
+```
+irb
+2.7.0 :001 > require "./lib/DockingStation"
+ => true
+2.7.0 :002 > dock = DockingStation.new
+2.7.0 :003 > dock.station Bike.new
+ => #<Bike:0x00007fabd31ce180>
+2.7.0 :004 > dock.station Bike.new
+Traceback (most recent call last):
+        5: from /Users/jlr/.rvm/rubies/ruby-2.7.0/bin/irb:23:in `<main>'
+        4: from /Users/jlr/.rvm/rubies/ruby-2.7.0/bin/irb:23:in `load'
+        3: from /Users/jlr/.rvm/rubies/ruby-2.7.0/lib/ruby/gems/2.7.0/gems/irb-1.2.1/exe/irb:11:in `<top (required)>'
+        2: from (irb):4
+        1: from /Users/jlr/Desktop/boris_bikes/lib/DockingStation.rb:13:in `station'
+RuntimeError (Dock full)
+```
