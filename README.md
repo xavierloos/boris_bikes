@@ -321,3 +321,61 @@ rspec
 Finished in 0.01341 seconds (files took 0.23496 seconds to load)
 2 examples, 0 failures
 ```
+
+## Making Docking Stations Release Bikes
+
+- Feature-test the feature you are building using irb
+
+```
+ irb
+2.7.0 :001 > require "./lib/DockingStation"
+ => true
+2.7.0 :002 > station = DockingStation.new
+2.7.0 :003 > bike = station.release_bike
+2.7.0 :004 > bike.working?
+Traceback (most recent call last):
+        4: from /Users/jlr/.rvm/rubies/ruby-2.7.0/bin/irb:23:in `<main>'
+        3: from /Users/jlr/.rvm/rubies/ruby-2.7.0/bin/irb:23:in `load'
+        2: from /Users/jlr/.rvm/rubies/ruby-2.7.0/lib/ruby/gems/2.7.0/gems/irb-1.2.1/exe/irb:11:in `<top (required)>'
+        1: from (irb):4
+NoMethodError (undefined method `working?' for nil:NilClass)
+```
+
+- Explain the error to your pair partner
+
+release_bike doesn't know what working? as there is not connection between the DockingStation class and the Bike class.
+
+- Add a test to your DockingStation specification that a) gets a bike, and then b) expects the bike to be working
+
+```
+# a) gets a bike, and then b) expects the bike to be working
+  it "release a bike and expect to be working" do
+    bike = subject.release_bike
+    expect(bike).to be_working
+  end
+```
+
+we get an error
+
+```
+rspec
+..F
+
+Failures:
+
+  1) DockingStation release a bike and expect to be working
+     Failure/Error: expect(bike).to be_working
+       expected nil to respond to `working?`
+     # ./spec/docking_station_spec.rb:10:in `block (2 levels) in <top (required)>'
+
+Finished in 0.05298 seconds (files took 0.23415 seconds to load)
+3 examples, 1 failure
+
+Failed examples:
+
+rspec ./spec/docking_station_spec.rb:8 # DockingStation release a bike and expect to be working
+```
+
+- Make this test pass
+
+- Feature-test the feature again.
